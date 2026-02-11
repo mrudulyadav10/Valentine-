@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#ffe6f0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.page{
+  display:none;
+  text-align:center;
+  padding:20px;
+}
+
+.page.active{
+  display:block;
+}
+
+img{
+  max-width:260px;
+  border-radius:20px;
+  margin-bottom:15px;
+}
+
+button{
+  padding:12px 24px;
+  font-size:16px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  margin:10px;
+}
+
+#yesBtn{
+  background:#ff4d6d;
+  color:white;
+}
+
+#noBtn{
+  background:#333;
+  color:white;
+  position:relative;
+}
+
+#letterBtn{
+  background:#b388eb; /* lavender */
+  color:white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <img id="mainImg" src="https://iili.io/fp6kZWG.jpg">
+  <h2 id="mainText">will you be mine 🥺</h2>
+
+  <button id="yesBtn" onclick="goPage(2)">YES</button>
+  <button id="noBtn" onclick="noClick()">NO</button>
+</div>
+
+<!-- PAGE 2 : HAPPY VALENTINE -->
+<div class="page" id="page2">
+  <img src="https://iili.io/fpsRZrv.jpg">
+
+  <h2>Happy Valentine’s Day Ena!!! 🫂</h2>
+
+  <p>
+    Every second with you is a celebration; you are the spark that makes my world so much brighter 🖤
+  </p>
+
+  <button id="letterBtn" onclick="goPage(3)">Letter for you</button>
+</div>
+
+<!-- PAGE 3 : LETTER -->
+<div class="page" id="page3">
+  <p style="max-width:600px;margin:auto;text-align:left;">
+    <b>My first kid💋👀</b><br><br>
+
+    This Valentine’s Day, I don’t want to give you just flowers or words that fade with time.
+    I want to give you something deeper—my truth.<br><br>
+
+    Before you, love was just a word I heard everywhere.
+    After you, love became a feeling I carry in my chest every single day.<br><br>
+
+    You are the calm in my chaos, the smile that finds me even on my worst days,
+    and the reason my heart feels like it finally belongs somewhere.<br><br>
+
+    When I think of you, I don’t just think of romance—I think of comfort, safety, and home.<br><br>
+
+    You don’t know this, but you make me want to be better—not out of fear of losing you,
+    but because loving you inspires me to grow.<br><br>
+
+    If I had one wish this Valentine’s Day, it would simply be you—today, tomorrow,
+    and in every chapter life writes for us.<br><br>
+
+    Thank you for choosing me.
+    Thank you for loving me the way you do.<br><br>
+
+    Happy Valentine’s Day, my love. 🤍🫂🖤
+  </p>
+
+  <br>
+  <button onclick="goPage(4)">Next</button>
+</div>
+
+<!-- PAGE 4 : FOREVER -->
+<div class="page" id="page4">
+  <img src="https://iili.io/fp6ktsf.jpg">
+
+  <p>
+    <span style="font-size:28px; font-weight:bold;">
+      you are my forever 💗
+    </span><br><br>
+
+    I don’t promise perfection, but I promise loyalty, honesty, and a love that stays.<br>
+    I choose you in calm days and in storms, in laughter and in silence.<br>
+    You are my safe place, my strength, and my future.<br>
+    Forever with you isn’t a dream—it’s a decision I’ll make every day.<br>
+    Today, tomorrow, always… it’s you. 🤍🫂
+  </p>
+</div>
+
+<script>
+/* PRELOAD IMAGES */
+const imgs = [
+  "https://iili.io/fp6kZWG.jpg", // 1st
+  "https://iili.io/fp6kkxa.jpg", // 2nd
+  "https://iili.io/fp6k8iv.jpg", // 3rd
+  "https://iili.io/fpsRZrv.jpg", // 4th
+  "https://iili.io/fp6ktsf.jpg"  // 5th
+];
+imgs.forEach(src => {
+  const i = new Image();
+  i.src = src;
+});
+
+/* PAGE 1 LOGIC */
+let noCount = 0;
+
+function noClick(){
+  const img = document.getElementById("mainImg");
+  const text = document.getElementById("mainText");
+  const noBtn = document.getElementById("noBtn");
+
+  if(noCount === 0){
+    img.src = imgs[1];
+    text.innerText = "Think again 😭";
+  }
+  else if(noCount === 1){
+    img.src = imgs[2];
+    text.innerText = "Are you sure 😡";
+  }
+
+  noBtn.style.left = Math.random()*200 - 100 + "px";
+  noBtn.style.top  = Math.random()*200 - 100 + "px";
+
+  noCount++;
+}
+
+/* PAGE SWITCH */
+function goPage(n){
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById("page"+n).classList.add("active");
+}
+</script>
+
+</body>
+</html>
